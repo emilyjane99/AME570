@@ -42,6 +42,8 @@ Host the single page resume you created on your Amazon EC2 server running Node.j
     -note: replace with your vm ip address
     <img width="321" alt="image" src="https://user-images.githubusercontent.com/67202291/218544078-bef0c1a0-c83c-42f0-ad23-b8a390a5260b.png">
     <img width="506" alt="image" src="https://user-images.githubusercontent.com/67202291/218544281-1e8c657c-98e0-42df-bd99-70d255f9cca2.png">
-14. Open your project
+14. Open your project and add these two lines to your server.js:
+    -var mongo = require('mongoskin');
+    -var db = mongo.db("mongodb://54.191.235.86:27017/");
 
 
