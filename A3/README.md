@@ -24,7 +24,6 @@ Host the single page resume you created on your Amazon EC2 server running Node.j
 
 8.Test installation: node -v 
     <img width="258" alt="image" src="https://user-images.githubusercontent.com/67202291/218523011-9098f4aa-4dc8-4438-b7b2-0439d4d75052.png">
-    <img width="1089" alt="image" src="https://user-images.githubusercontent.com/67202291/218536370-21dc1b3f-ced4-4afc-a82f-8a8ea9af0d93.png">
 
 9. Edit Security Groups for this instance - I added my IP Address and port 1234
     <img width="882" alt="image" src="https://user-images.githubusercontent.com/67202291/219524531-2cad9ba5-ab54-4d33-91d8-b83917f3063a.png">
