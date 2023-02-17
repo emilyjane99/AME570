@@ -1,14 +1,10 @@
-var mongo = require('mongoskin');
-var db = mongo.db("mongodb://54.191.235.86:27017/");
 var express = require("express");
 var app = express();
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
 var hostname = process.env.HOSTNAME || 'localhost';
-var port = 9999;
-var mongo = require('mongoskin');
-var db = mongo.db("mongodb://54.191.235.86:27017/");
+var port = 1234;
 
 app.get("/", function (req, res) {
     res.redirect("index.html")
