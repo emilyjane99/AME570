@@ -1,5 +1,5 @@
 var MS = require('mongoskin');
-var db = MS.db("mongodb://44.203.228.133:27017/rssReader")   // connect to the rssReader database 
+var db = MS.db("mongodb://3.227.255.222:27017/rssReader")   // connect to the rssReader database
 var express = require("express");
 var server = express();
 var hostname = process.env.HOSTNAME || 'localhost';
@@ -11,7 +11,10 @@ var client = new Client();
 server.get("/editFeed", function (req, res) {
     var data = req.query;
     var id = data.id;
-    console.log(data, id);
+    console.log("editing data!!!!");
+    console.log(data);
+    console.log("editing this feed");
+    console.log(id);
     db.collection('feeds').update({ _id: MS.helper.toObjectID(id) }, { $set: { name: data.name} }, function (err, result) {
         if (err) {
             console.log(err);
@@ -47,6 +50,23 @@ server.get("/addFeed", function (req, res) {
             res.send(result);
         }
     });
+});
+
+server.get("/deleteFeed", function (req, res) {
+    var data = req.query;
+    //console.log("request: "+req.query);
+    //get feed id from request
+    console.log("deleting this feed!!!! "+data.id);
+
+    db.collection('feeds').remove({_id: MS.helper.toObjectID(data.id)},
+        function (err, result) {
+            if (err) {
+                console.log("ERROR WITH DELETION "+err);
+            } else {
+                console.log('Item Deleted:', result.result);
+                res.send(result);
+            }
+        });
 });
 
 server.get("/makeHTTPReq", function (req, res) {
