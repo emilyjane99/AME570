@@ -1,5 +1,5 @@
 var MS = require('mongoskin');
-var db = MS.db("mongodb://3.227.255.222:27017/rssReader")   // connect to the rssReader database
+var db = MS.db("mongodb://52.91.165.161:27017/rssReader")   // connect to the rssReader database
 var express = require("express");
 var server = express();
 var hostname = process.env.HOSTNAME || 'localhost';

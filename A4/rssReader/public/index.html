@@ -7,31 +7,34 @@
         <meta viewport="width=device-width, initial-scale=1, user-scalable=no">      
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">          
         <link rel="stylesheet" href="style.css">
     </head>
     <body onload="loadAllFeeds()">
         <div id="rssListWrapper">  
-            <button class="btn waves-effect waves-light blue" onclick="addNew()">Add New
+            <button class="btn editBtn" onclick="addNew()" id="addRss">Add New
                 <i class="material-icons left">add_circle</i>
-              </button>
-              <div id="rssList">
-                </div>
+            </button>
+            <div id="rssList"></div>
         </div>
 
         <div id="itemListWrapper">
-            <button class="btn waves-effect waves-light blue" onclick="editCurrFeed()">Edit
+            <button class="btn editBtn" onclick="editCurrFeed()">Edit
                 <i class="material-icons left">edit</i>
-              </button>
-              <button class="btn waves-effect waves-light red" style="float:right" onclick="deleteCurrFeed()">Delete
+            </button>
+            <button class="btn waves-effect waves-light red" style="float:right" onclick="deleteCurrFeed()">Delete
                 <i class="material-icons left">remove</i>
-              </button>
-                <div id="itemList">
-                    </div>
+            </button>
+
+            <div id="itemList"></div>
         </div>
 
-        <div id="details">
-        </div>
+        <div id="itemDetails"></div>
+
+
     </body>
 
     <script>
@@ -46,6 +49,7 @@
         }
       }
       function addNew(){
+
         var url = prompt("Enter the URL of the RSS feed you want to add");
         if(url != null){
           loadURL("/addFeed?url=" + url, function(data){
@@ -119,10 +123,21 @@
               "<h2>" + list[i].artistName + "</h2>" + 
             "</button>";
         }
-        console.log(markup);
         document.getElementById("itemList").innerHTML  = markup;
       }
 
+      function itemClicked(index){
+
+          var list = jsonObj.feed.results;
+
+          var markup =  "<img src='"+ list[index].artworkUrl100 +"'>" +
+                  "<h1>" + list[index].name + "</h1>" +
+                  "<h2>" + list[index].artistName + "</h2>";
+
+          document.getElementById("itemDetails").innerHTML  = markup;
+
+          console.log("this item's details: "+ list[index]);
+      }
       function removeFeed(data){
           feeds = JSON.parse(data);
           document.getElementById("rssList").innerHTML = "";
