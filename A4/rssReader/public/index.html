@@ -4,7 +4,9 @@
         <title> RSS Reader</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="asyncReq.js"></script>
-        <meta viewport="width=device-width, initial-scale=1, user-scalable=no">      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--
+        <meta viewport="width=device-width, initial-scale=1, user-scalable=no">    -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,28 +15,20 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">          
         <link rel="stylesheet" href="style.css">
     </head>
+
     <body onload="loadAllFeeds()">
         <div id="rssListWrapper">  
-            <button class="btn editBtn" onclick="addNew()" id="addRss">Add New
-                <i class="material-icons left">add_circle</i>
-            </button>
+            <button class="btn waves-effect waves-light editBtn" onclick="addNew()" id="addRss">Add</button>
+            <button class="btn editBtn" onclick="editCurrFeed()">Edit</button>
+            <button class="btn waves-effect waves-light editBtn" onclick="deleteCurrFeed()">Delete</button>
             <div id="rssList"></div>
         </div>
 
         <div id="itemListWrapper">
-            <button class="btn editBtn" onclick="editCurrFeed()">Edit
-                <i class="material-icons left">edit</i>
-            </button>
-            <button class="btn waves-effect waves-light red" style="float:right" onclick="deleteCurrFeed()">Delete
-                <i class="material-icons left">remove</i>
-            </button>
-
             <div id="itemList"></div>
         </div>
 
         <div id="itemDetails"></div>
-
-
     </body>
 
     <script>
@@ -68,7 +62,6 @@
               });
 
              loadAllFeeds();
-              // removeFeed(data);
           }
       }
 

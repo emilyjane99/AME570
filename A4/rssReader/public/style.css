@@ -4,7 +4,7 @@ body {
 }
 
 #rssListWrapper {
-    max-width: 20vw;
+    width: 25vw;
     height: 100vh;
     overflow: hidden;
     padding: 0;
@@ -31,7 +31,10 @@ body {
 }
 
 #rssListWrapper>button {
-    width: 100%;
+    width: 30%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
 }
 
 #itemListWrapper>button {
@@ -39,7 +42,8 @@ body {
 }
 
 #rssList>button {
-    width: 100%;
+    width: 100vw;
+    display: block;
 }
 
 #rssList>button h1 {
@@ -88,6 +92,7 @@ body {
 }
 
 #itemDetails {
+    font-family: 'Inconsolata', monospace;
     width: 50%;
     position: absolute;
     right: 0;
@@ -97,19 +102,76 @@ body {
     text-align: center;
 }
 
-.button{
+button{
     font-family: 'Inconsolata', monospace;
 }
 
 .editBtn{
-    background-color: black;
+    color: black;
+    font-weight: bold;
+    background-color: #9BB6D4;
 }
 
-.editBtn:hover{
-    background-color: #8E2722;
+.feed{
+    max-width: 90%;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: small;
+    background-color: #B8CBE0;
+    color: #0A2949;
 }
 
-.editBtn:active{
-    background-color: #8E2722;
+@media screen and (max-width: 910px){
+    #rssListWrapper {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #itemListWrapper {
+        display: none;
+    }
+
+    #itemDetails {
+        display: none;
+    }
 }
+
+/*
+@media screen and (max-width: 600px) { /* for "small" screens
+    #rssListWrapper{
+        width: 100vw;
+    }
+
+    #itemListWrapper{
+         width: 0vw;
+         position: relative;
+         display: none;
+     }
+    /*
+
+    body.details #backButton{
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: auto;
+        height: 50px;
+        background: lightgray;
+        border: none;
+        font-size: 20px;
+    }
+
+    #itemList{
+        display: block;
+    }
+    body.details #itemList{
+        display: none;
+    }
+
+    body.details #itemDetails{
+        display: block;
+    }
+
+*/
 
