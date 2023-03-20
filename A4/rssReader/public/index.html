@@ -17,18 +17,37 @@
     </head>
 
     <body onload="loadAllFeeds()">
-        <div id="rssListWrapper">  
-            <button class="btn waves-effect waves-light editBtn" onclick="addNew()" id="addRss">Add</button>
-            <button class="btn editBtn" onclick="editCurrFeed()">Edit</button>
-            <button class="btn waves-effect waves-light editBtn" onclick="deleteCurrFeed()">Delete</button>
+        <div id="rssListWrapper">
+            <button class="btn waves-effect waves-light btnStyle" onclick="addNew()" id="addRss">Add</button>
+            <button class="btn btnStyle" id="editBtn" onclick="editCurrFeed()">Edit</button>
+            <button class="btn waves-effect waves-light btnStyle" id="deleteBtn" onclick="deleteCurrFeed()">Delete</button>
+            <script>if (window.innerWidth <= 910){
+                document.getElementById("editBtn").remove();
+                document.getElementById("deleteBtn").remove();
+            }</script>
+
             <div id="rssList"></div>
         </div>
 
-        <div id="itemListWrapper">
+        <div id="itemListWrapper" class = "stopFocus">
+            <div id="smallScreenBtn">
+                <button class="btn waves-effect waves-light btnStyle threeBtn" onclick="loadFeed()" id="backRss">Back</button>
+                <button class="btn btnStyle threeBtn " id="editColTwo" onclick="editCurrFeed()">Edit</button>
+                <button class="btn waves-effect waves-light btnStyle threeBtn" id="deleteColTwo" onclick="deleteCurrFeed()">Delete</button>
+            </div>
+
+            <script>
+                if (window.innerWidth > 910){document.getElementById("smallScreenBtn").remove();}
+            </script>
             <div id="itemList"></div>
         </div>
 
-        <div id="itemDetails"></div>
+        <div id="itemDetails" class = "stopFocus">
+            <button class="btn waves-effect waves-light btnStyle threeBtn" onclick="generateMarkup()" id="backThird">Back</button>
+            <script>
+                if (window.innerWidth > 910){document.getElementById("backThird").remove();}
+            </script>
+        </div>
     </body>
 
     <script>
@@ -82,7 +101,11 @@
             var y = function(i){
               var x = i;
               return function(){
-                loadFeed(x);
+                  if(window.innerWidth <= 910){
+                      document.getElementById("rssListWrapper").remove(); //only for small screens
+                      document.getElementById("itemListWrapper").classList.add("focus");
+                  }
+                  loadFeed(x);
               }
             }
             feedDiv.onclick =  y(i);
@@ -101,14 +124,14 @@
         var url = "./makeHTTPReq?url=" + feeds[index].url;
         loadURL(url, function(resData){
            jsonObj = JSON.parse(resData);
-           generateMarkup();
+           generateMarkup(feeds[index]);
         });
       }
 
-      function generateMarkup()
+      function generateMarkup(currentFeed)
       {
         var list = jsonObj.feed.results;
-        var markup = "";
+        var markup = "<h2>" + currentFeed.name + "</h2>";
         for (var i = 0; i < list.length; i++){
           markup += "<button onclick='itemClicked("+ i +")'>" +
               "<img src='"+ list[i].artworkUrl100 +"'>" +
@@ -123,13 +146,18 @@
 
           var list = jsonObj.feed.results;
 
+          if(window.innerWidth <= 910){
+              console.log("removing the list");
+              document.getElementById("itemListWrapper").remove();
+              document.getElementById("itemDetails").classList.add("focus");
+              document.getElementById("itemDetails").classList.remove("stopFocus");
+          }
+
           var markup =  "<img src='"+ list[index].artworkUrl100 +"'>" +
                   "<h1>" + list[index].name + "</h1>" +
                   "<h2>" + list[index].artistName + "</h2>";
 
           document.getElementById("itemDetails").innerHTML  = markup;
-
-          console.log("this item's details: "+ list[index]);
       }
       function removeFeed(data){
           feeds = JSON.parse(data);

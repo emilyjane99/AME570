@@ -14,13 +14,16 @@ body {
 }
 
 #itemListWrapper {
-    width: 30vw;
+    float: left;
+    width: 25vw;
     height: 100vh;
     overflow: auto;
     padding: 0;
     margin: 0;
-    background-color: #006092;
-    float: left;
+    background-color: #015786;
+    font-family: 'Inconsolata', monospace;
+    text-align: center;
+    color: white;
 }
 
 #itemDetails {
@@ -39,6 +42,12 @@ body {
 
 #itemListWrapper>button {
     margin: 0 10px 0 10px;
+}
+
+.threeBtn{
+    width: 30%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 #rssList>button {
@@ -106,7 +115,7 @@ button{
     font-family: 'Inconsolata', monospace;
 }
 
-.editBtn{
+.btnStyle{
     color: black;
     font-weight: bold;
     background-color: #9BB6D4;
@@ -122,6 +131,14 @@ button{
     color: #0A2949;
 }
 
+.focus{
+    display: block;
+}
+
+#smallScreenBtn{
+    margin-top: 5%;
+}
+
 @media screen and (max-width: 910px){
     #rssListWrapper {
         width: 100vw;
@@ -129,11 +146,20 @@ button{
     }
 
     #itemListWrapper {
+        width: 100vw;
+    }
+
+    #itemDetails{
+        width: 100vw;
+    }
+
+    .stopFocus{
         display: none;
     }
 
-    #itemDetails {
-        display: none;
+    .focus{
+        display: block;
+        width: 100vw;
     }
 }
 
