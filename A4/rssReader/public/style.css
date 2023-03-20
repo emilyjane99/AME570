@@ -139,6 +139,11 @@ button{
     margin-top: 5%;
 }
 
+.detailsImg{
+    width: 15vw;
+    height: auto;
+}
+
 @media screen and (max-width: 910px){
     #rssListWrapper {
         width: 100vw;
@@ -160,6 +165,19 @@ button{
     .focus{
         display: block;
         width: 100vw;
+    }
+
+    .detailsImg{
+        width: 30vw;
+        height: auto;
+        display: block;
+        padding-top: 10%;
+    }
+
+    #backThird{
+        float: left;
+        margin-left: 2%;
+        margin-top: 0%;
     }
 }
 

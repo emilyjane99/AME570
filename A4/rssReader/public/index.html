@@ -43,10 +43,12 @@
         </div>
 
         <div id="itemDetails" class = "stopFocus">
-            <button class="btn waves-effect waves-light btnStyle threeBtn" onclick="generateMarkup()" id="backThird">Back</button>
+
+            <!--
             <script>
                 if (window.innerWidth > 910){document.getElementById("backThird").remove();}
             </script>
+            -->
         </div>
     </body>
 
@@ -145,17 +147,19 @@
       function itemClicked(index){
 
           var list = jsonObj.feed.results;
+          var markup = "";
 
           if(window.innerWidth <= 910){
               console.log("removing the list");
               document.getElementById("itemListWrapper").remove();
               document.getElementById("itemDetails").classList.add("focus");
               document.getElementById("itemDetails").classList.remove("stopFocus");
+              markup = "<button class=\"btn waves-effect waves-light btnStyle threeBtn\" onclick=\"generateMarkup()\" id=\"backThird\">Back</button>"
           }
 
-          var markup =  "<img src='"+ list[index].artworkUrl100 +"'>" +
-                  "<h1>" + list[index].name + "</h1>" +
-                  "<h2>" + list[index].artistName + "</h2>";
+          markup +=  "<img src='"+ list[index].artworkUrl100 +"' class='detailsImg'>" +
+                  "<h2>" + list[index].name + "</h2>" +
+                  "<h3>" + list[index].artistName + "</h3>";
 
           document.getElementById("itemDetails").innerHTML  = markup;
       }
