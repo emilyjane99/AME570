@@ -1,4 +1,5 @@
 body {
+    background-color: #80A2C8;
     margin: 0;
     padding: 0;
 }
@@ -30,7 +31,8 @@ body {
     background-color: #80A2C8;
     width: 50vw;
     height: 100vh;
-    float: right;
+    padding: 0;
+    margin: 0;
 }
 
 #rssListWrapper>button {
@@ -100,9 +102,9 @@ body {
     font-size: 16px;
 }
 
+
 #itemDetails {
     font-family: 'Inconsolata', monospace;
-    width: 50%;
     position: absolute;
     right: 0;
     padding-top: 10%;
@@ -110,6 +112,7 @@ body {
     overflow: auto;
     text-align: center;
 }
+
 
 button{
     font-family: 'Inconsolata', monospace;
@@ -170,8 +173,8 @@ button{
     .detailsImg{
         width: 30vw;
         height: auto;
-        display: block;
-        padding-top: 10%;
+        margin-top: 10vh;
+        margin-right: 30vw;
     }
 
     #backThird{
