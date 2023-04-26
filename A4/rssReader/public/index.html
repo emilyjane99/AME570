@@ -103,7 +103,7 @@
         }
       }
       function addNew(){
-
+          console.log("we are adding a url");
         var url = prompt("Enter the URL of the RSS feed you want to add");
         if(url != null){
           loadURL("/addFeed?url=" + url, function(data){
@@ -112,6 +112,9 @@
         }
           loadAllFeeds();
       }
+
+
+
       function deleteCurrFeed()
       {
           if(confirm("Are you sure that you want to delete this RSS feed?")) {
@@ -127,6 +130,7 @@
 
           loadAllFeeds();
       }
+
 
       var feeds;
       var currentFeed = -1;

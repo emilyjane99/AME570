@@ -1,13 +1,11 @@
 var MS = require('mongoskin');
-var db = MS.db("mongodb://100.26.216.182:27017/rssReader")   // connect to the rssReader database
+var db = MS.db("mongodb://54.91.217.10:27017/rssReader")   // connect to the rssReader database
 var express = require("express");
 var server = express();
 var hostname = process.env.HOSTNAME || 'localhost';
 var port = 9999;
 var Client = require('node-rest-client').Client;
 var client = new Client();
-
-
 
 server.get("/editFeed", function (req, res) {
     var data = req.query;
