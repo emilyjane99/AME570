@@ -8,7 +8,7 @@ var url = require("url"),
 	querystring = require("querystring");
 var passport = require('passport');
 var fs = require('fs');
-var dbURL = 'mongodb://44.211.252.215:27017/test';
+var dbURL = 'mongodb://54.242.90.14:27017/test';
 
 
     var args = process.argv.slice(2);
@@ -96,7 +96,11 @@ app.get("/updateImageFilter", function(req, res){
             res.send(result);
         }
     });
+});
 
+app.get("/updateImageTitle", function(req, res){
+    var title = req.query.title;
+    console.log("Name received: "+title);
 });
 
 app.post('/uploadProfilePic', function(req, res) {
@@ -127,9 +131,6 @@ app.post('/uploadProfilePic', function(req, res) {
                 });
             }
         });
-
-
-
     });
 });
 

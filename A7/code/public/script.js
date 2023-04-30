@@ -3,6 +3,8 @@ var filterSelect;
 
 var bucketURL = "https://bucket470570.s3-us-west-2.amazonaws.com/";
 
+var currentImage = 0;
+
 function start()
 {
     document.getElementById("accountInfo").innerHTML = "Welcome, " + userObj.local.email;
@@ -25,10 +27,23 @@ function start()
 function updateImageFilter()
 {
     var filter = document.getElementById("filterSelect").value;
-    var img = allImages[currMenuIndex];
+    var img = allImages[currentImage];
+
     document.getElementById("imagePreviewContainer").className = filter;
+
     $.get("/updateImageFilter", {id: img._id, filter: filter}, function(data){
         console.log(data);
+    });
+}
+
+
+function updateImageTitle()
+{
+    var imgTitle = document.getElementById("imageTitle").value;
+    var img = allImages[currentImage];
+    console.log("updating the image title: "+imgTitle+" for image "+currentImage);
+    $.get("/updateImageTitle", {id: img._id, title: imgTitle}, function(data){
+    console.log(data);
     });
 }
 
@@ -124,7 +139,7 @@ function makeUserImageList(){
     allImages = JSON.parse(data);
     var html = "";
     for(var i = 0; i < allImages.length; i++){
-        html += "<button class='col s4 " + allImages[i].filter + "' onclick='imageSelected("+i+")'><h1>" + allImages[i].intname + "</h1><img class='responsive-img' src='" + bucketURL + allImages[i].url + "'></button>";
+        html += "<button class='col s4 " + allImages[i].filter + "' onclick='imageSelected("+i+")'><h1>" + allImages[i].name + "</h1><img class='responsive-img' src='" + bucketURL + allImages[i].url + "'></button>";
     }
     $("#imageList").html(html);
   });
@@ -143,6 +158,8 @@ function imageSelected(index){
     $("#filterSelect").val(img.filter || "none");
     var elems = document.querySelectorAll('select');
    filterSelect = M.FormSelect.init(elems, {});
+
+    currentImage = index;
 
     
 }

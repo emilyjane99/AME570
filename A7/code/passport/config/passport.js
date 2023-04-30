@@ -40,7 +40,7 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-            User.findOne({ 'local.email' :  email }, function(err, user) {
+            User.findById({ 'local.email' :  email }, function(err, user) {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
