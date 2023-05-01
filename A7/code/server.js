@@ -8,7 +8,7 @@ var url = require("url"),
 	querystring = require("querystring");
 var passport = require('passport');
 var fs = require('fs');
-var dbURL = 'mongodb://54.242.90.14:27017/test';
+var dbURL = 'mongodb://54.161.131.13:27017/test';
 
 
     var args = process.argv.slice(2);
@@ -100,7 +100,17 @@ app.get("/updateImageFilter", function(req, res){
 
 app.get("/updateImageTitle", function(req, res){
     var title = req.query.title;
+    var id = req.query.id;
     console.log("Name received: "+title);
+    db.collection('images').update({ _id: MS.helper.toObjectID(id) }, { $set: { name: title} }, function (err, result) {
+        if (err) {
+            console.log(err);
+            console.log("Could not update image name");
+        } else {
+            console.log('updated:', result.length, result);
+            res.send(result);
+        }
+    });
 });
 
 app.post('/uploadProfilePic', function(req, res) {

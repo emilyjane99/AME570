@@ -42,8 +42,9 @@ function updateImageTitle()
     var imgTitle = document.getElementById("imageTitle").value;
     var img = allImages[currentImage];
     console.log("updating the image title: "+imgTitle+" for image "+currentImage);
+
     $.get("/updateImageTitle", {id: img._id, title: imgTitle}, function(data){
-    console.log(data);
+        console.log(data);
     });
 }
 
